@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../supabaseClient'
 
 export function AdminLogin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+
+  const navigate = useNavigate()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -18,7 +20,7 @@ export function AdminLogin() {
     if (error) {
       setError(error.message)
     } else {
-      window.location.href = '/admin/dashboard'
+      navigate('/admin/dashboard')
     }
   }
 
